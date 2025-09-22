@@ -1,0 +1,17 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: seagreen;
+        margin: 0;
+        padding: 20px;
+    }
+</style>
+<body>
+    <center>
+        <h1>ADD THE CATAGORY</h1>
+        <form method="POST">
+        {% csrf_token %}
+            <input type="text" name="name" placeholder="Enter the Catagory"><br><br>
+            <input type="submit" value="Add">
+    </center>
+</body>

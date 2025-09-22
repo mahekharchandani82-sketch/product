@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'head.html' %}
+    <body id="reportsPage">
+        {% include 'header.html' %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
+                </div>
+            </div>
+            <!-- row -->
+            <div class="row tm-content-row">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block">
+                        <h2 class="tm-block-title">Latest Hits</h2>
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block">
+                        <h2 class="tm-block-title">Performance</h2>
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block tm-block-taller">
+                        <h2 class="tm-block-title">Storage Information</h2>
+                        <div id="pieChartContainer">
+                            <canvas id="pieChart" class="chartjs-render-monitor" width="200" height="200"></canvas>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-overflow">
+                        <h2 class="tm-block-title">Notification List</h2>
+                        <div class="tm-notification-items">
+                            {% for i in noti %}
+                                <div class="media tm-notification-item">
+                                    <div class="tm-gray-circle"><img src="{{ i.image.url }}" alt="Avatar Image" class="rounded-circle"></div>
+                                    <div class="media-body">
+                                        <p class="mb-2">{{ i.about }}</p>
+                                        <span class="tm-small tm-text-color-secondary">6h ago.</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+                        <h2 class="tm-block-title">Orders List</h2>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ORDER NO.</th>
+                                    <th scope="col">STATUS</th>
+                                    <th scope="col">OPERATORS</th>
+                                    <th scope="col">LOCATION</th>
+                                    <th scope="col">DISTANCE</th>
+                                    <th scope="col">START DATE</th>
+                                    <th scope="col">EST DELIVERY DUE</th>
+                                    <th scope="col">EDIT</th>
+                                    <th scope="col">DELETE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in order_list %}
+                                    <tr>
+                                        <th scope="row"><b>{{ i.order }}</b></th>
+                                        <td>
+                                            <div class="tm-status-circle moving">
+                                            </div>{{ i.status }}
+                                        </td>
+                                        <td><b>{{ i.operator }}</b></td>
+                                        <td><b>{{ i.location }}</b></td>
+                                        <td><b>{{ i.distance }}</b></td>
+                                        <td>{{ i.start_date }}</td>
+                                        <td>{{ i.est_delivery }}</td>
+                                        <td><a href="{% url 'edit_index' i.id %}" ><img src='app/static/img/edit.png' width='40px'></i></a></td>
+
+                                        <td><a href="{% url 'delete_index' i.id  %}" class="tm-product-delete-link"><i class="far fa-trash-alt tm-product-delete-icon"></i></a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                            <a href="{% url 'add_index' %}" class="btn btn-primary btn-block text-uppercase mb-3">Add New Order</a>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+       {% include 'footer.html' %}
+    </div>
+
+    {% include 'script.html' %}
+</body>
+
+</html>

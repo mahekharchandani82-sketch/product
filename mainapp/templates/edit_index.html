@@ -1,0 +1,23 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: seagreen;
+        margin: 0;
+        padding: 20px;
+    }
+</style>
+<body>
+    <center>
+        <h1>EDIT THE DATA</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="number" name="order" placeholder="Enter the Order ID"><br><br>
+            <input type="text" name="status" placeholder="Enter the Status"><br><br>
+            <input type="text" name="operator" placeholder="Enter the Operator"><br><br>
+            <input type="text" name="location" placeholder="Enter the Location"><br><br>
+            <input type="text" name="distance" placeholder="Enter the Distance"><br><br>
+            <input type="date" name="start_date" placeholder="Enter the Start Date"><br><br>
+            <input type="date" name="est_delivery" placeholder="Enter the Estimated Delivery Date"><br><br>
+            <input type="submit" value="EDIT">
+    </center>
+</body>
